@@ -43,4 +43,3 @@ jobs:
           repository: ciur/dst-repo
           pullRequestNumber:  ${{ steps.cpr.outputs.pull-request-number }}
           token: ${{ secrets.GH_PAT_TOKEN }}
-          strategy: squash
