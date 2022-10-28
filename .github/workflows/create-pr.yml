@@ -32,4 +32,4 @@ jobs:
           add-paths: |
             date.txt
           path: temp-dst-repo
-
+          labels: automerge, auto-merge
