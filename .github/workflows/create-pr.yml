@@ -27,6 +27,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
+          token: ${{ secrets.GH_PAT_TOKEN }}
           add-paths: |
             date.txt
           path: temp-dst-repo
