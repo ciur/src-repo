@@ -1,0 +1,31 @@
+name: Create PR
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout src repo
+        uses: actions/checkout@v3
+        with:
+          path: temp-src-repo
+
+      - name: Checkout dst repo
+        uses: actions/checkout@v3
+        with:
+          repository: ciur/dst-repo
+          path: temp-dst-repo
+
+      - name: Generate File
+        run: |
+          cd temp-src-repo
+          ./generate.sh > ../temp-dst-repo/date.txt
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          add-paths: |
+            date.txt
+          path: temp-dst-repo
