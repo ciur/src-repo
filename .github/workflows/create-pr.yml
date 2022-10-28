@@ -32,4 +32,10 @@ jobs:
           add-paths: |
             date.txt
           path: temp-dst-repo
-          labels: automerge, auto-merge
+          labels: automerge
+
+      - name: Automerge
+        id: automerge
+        uses: "pascalgn/automerge-action@v0.15.5"
+        env:
+            GITHUB_TOKEN: "${{ secrets.GH_PAT_TOKEN }}"
