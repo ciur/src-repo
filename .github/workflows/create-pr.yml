@@ -25,9 +25,19 @@ jobs:
           ./generate.sh > ../temp-dst-repo/date.txt
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.GH_PAT_TOKEN }}
           add-paths: |
             date.txt
           path: temp-dst-repo
+
+      - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.GH_PAT_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
+          repository: ciur/dst-repo
