@@ -34,8 +34,13 @@ jobs:
           path: temp-dst-repo
           labels: automerge
 
-      - name: Automerge
-        id: automerge
-        uses: "pascalgn/automerge-action@v0.15.5"
-        env:
-            GITHUB_TOKEN: "${{ secrets.GH_PAT_TOKEN }}"
+      - name: Merge
+        uses: KeisukeYamashita/auto-pull-request-merge@v1
+        with:
+          intervalSeconds: 10
+          timeoutSeconds: 30
+          labels: automerge
+          repository: ciur/dst-repo
+          pullRequestNumber:  ${{ steps.cpr.outputs.pull-request-number }}
+          token: ${{ secrets.GH_PAT_TOKEN }}
+          strategy: squash
