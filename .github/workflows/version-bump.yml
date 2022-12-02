@@ -28,45 +28,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+
   update-openapi-schema:
-    runs-on: ubuntu-latest
     needs:
       - version-bump
-    steps:
-      - name: Checkout src repo
-        uses: actions/checkout@v3
-        with:
-          path: temp-src-repo
+    uses: ciur/src-repo/.github/workflows/update-openapi-schema.yml@master
 
-      - name: Checkout dst repo
-        uses: actions/checkout@v3
-        with:
-          repository: ciur/dst-repo
-          path: temp-dst-repo
-
-      - name: Generate File
-        run: |
-          cd temp-src-repo
-          chmod +x ./generate.sh
-          ./generate.sh > ../temp-dst-repo/date.txt
-
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v4
-        with:
-          token: ${{ secrets.GH_PAT_TOKEN }}
-          add-paths: |
-            date.txt
-          path: temp-dst-repo
-          labels: automerge
-
-      - name: Merge
-        uses: KeisukeYamashita/auto-pull-request-merge@v1
-        with:
-          intervalSeconds: 10
-          timeoutSeconds: 30
-          labels: automerge
-          repository: ciur/dst-repo
-          pullRequestNumber:  ${{ steps.cpr.outputs.pull-request-number }}
-          token: ${{ secrets.GH_PAT_TOKEN }}
-          checkStatus: false
