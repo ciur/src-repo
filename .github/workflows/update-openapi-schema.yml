@@ -26,8 +26,8 @@ jobs:
           cat ../temp-dst-repo/date.txt
 
       - name: Echo created file
-      run: |
-          cat ../temp-dst-repo/date.txt
+        run: |
+            cat ../temp-dst-repo/date.txt
 
       - name: Create Pull Request
         id: cpr
