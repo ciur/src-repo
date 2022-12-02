@@ -3,6 +3,9 @@ name: Update OpenAPI Schema
 on:
   workflow_dispatch:
   workflow_call:
+    secrets:
+      token:
+        required: true
 
 jobs:
   update-openapi-schema:
