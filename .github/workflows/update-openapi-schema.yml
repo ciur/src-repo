@@ -1,3 +1,5 @@
+name: Update OpenAPI Schema
+
 on:
   workflow_call:
 
