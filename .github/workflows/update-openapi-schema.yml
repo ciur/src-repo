@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   workflow_call:
     secrets:
-      token:
+      GH_PAT_TOKEN:
         required: true
 
 jobs:
