@@ -1,7 +1,6 @@
 name: Update OpenAPI Schema
 
 on:
-  workflow_call:
   workflow_dispatch:
 
 jobs:
