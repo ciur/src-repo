@@ -24,6 +24,11 @@ jobs:
           cd temp-src-repo
           chmod +x ./generate.sh
           ./generate.sh > ../temp-dst-repo/date.txt
+          cat ../temp-dst-repo/date.txt
+
+      - name: Echo created file
+      run: |
+          cat ../temp-dst-repo/date.txt
 
       - name: Create Pull Request
         id: cpr
