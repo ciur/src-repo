@@ -12,10 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout src repo
-        uses: actions/checkout@master
-        with:
-          path: temp-src-repo
-          clean: false
+        run: |
+          git checkout git@github.com:ciur/src-repo.git temp-src-repo
 
       - name: Checkout dst repo
         uses: actions/checkout@master
