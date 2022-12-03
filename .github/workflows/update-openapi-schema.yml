@@ -60,14 +60,14 @@ jobs:
       needs: [update-openapi-schema]
       runs-on: ubuntu-latest
       steps:
-      - name:
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GH_PAT_TOKEN }}
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: 'ciur',
-              repo: '3rd-repo',
-              workflow_id: 'generate.yml',
-              ref: 'main'
-            })
+        - name:
+          uses: actions/github-script@v6
+          with:
+            github-token: ${{ secrets.GH_PAT_TOKEN }}
+            script: |
+              await github.rest.actions.createWorkflowDispatch({
+                owner: 'ciur',
+                repo: '3rd-repo',
+                workflow_id: 'generate.yml',
+                ref: 'main'
+              })
