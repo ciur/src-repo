@@ -11,16 +11,18 @@ jobs:
   update-openapi-schema:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout src repo
-        run: |
-          git clone https://github.com/ciur/src-repo.git temp-src-repo
+      - name: Clone src repo
+        uses: actions/checkout@master
+        with:
+          repository: ciur/src-repo
+          path: temp-src-repo
+          ref: master
 
       - name: Checkout dst repo
         uses: actions/checkout@master
         with:
           repository: ciur/dst-repo
           path: temp-dst-repo
-          clean: false
 
       - name: Generate File
         run: |
