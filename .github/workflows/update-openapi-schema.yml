@@ -60,7 +60,7 @@ jobs:
       needs: [update-openapi-schema]
       runs-on: ubuntu-latest
       steps:
-        - name:
+        - name: Trigger dispatch event for 3rd repo
           uses: actions/github-script@v6
           with:
             github-token: ${{ secrets.GH_PAT_TOKEN }}
