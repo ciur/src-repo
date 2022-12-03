@@ -28,3 +28,10 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+
+  update-openapi-schema:
+    name: Update openapi schema
+    needs: ["version-bump"]
+    uses: ./.github/workflows/update-openapi-schema.yml
+    secrets:
+      GH_PAT_TOKEN: ${{ secrets.GH_PAT_TOKEN }}

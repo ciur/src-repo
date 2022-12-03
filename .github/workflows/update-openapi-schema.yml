@@ -2,11 +2,10 @@ name: Update OpenAPI Schema
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - 'master'
-    path:
-      - 'version.py'
+  workflow_call:
+    secrets:
+      GH_PAT_TOKEN:
+        required: true
 
 jobs:
   update-openapi-schema:
