@@ -30,6 +30,7 @@ jobs:
           branch: ${{ github.ref }}
 
   update-openapi-schema:
+    name: Update openapi schema
     needs: ["version-bump"]
     uses: ./.github/workflows/update-openapi-schema.yml
     secrets:
