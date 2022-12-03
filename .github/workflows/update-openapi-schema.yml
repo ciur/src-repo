@@ -2,23 +2,24 @@ name: Update OpenAPI Schema
 
 on:
   workflow_dispatch:
-  workflow_call:
-    secrets:
-      GH_PAT_TOKEN:
-        required: true
+  push:
+    branches:
+      - 'master'
+    path:
+      - 'version.py'
 
 jobs:
   update-openapi-schema:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout src repo
-        uses: actions/checkout@v3
+        uses: actions/checkout
         with:
           path: temp-src-repo
           clean: false
 
       - name: Checkout dst repo
-        uses: actions/checkout@v3
+        uses: actions/checkout
         with:
           repository: ciur/dst-repo
           path: temp-dst-repo
