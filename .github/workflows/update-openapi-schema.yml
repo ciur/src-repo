@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout src repo
         run: |
-          git checkout git@github.com:ciur/src-repo.git temp-src-repo
+          git clone git@github.com:ciur/src-repo.git temp-src-repo
 
       - name: Checkout dst repo
         uses: actions/checkout@master
