@@ -35,3 +35,10 @@ jobs:
     uses: ./.github/workflows/update-openapi-schema.yml
     secrets:
       GH_PAT_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
+
+  dispatch:
+    name: Dispatch
+    needs: ["update-openapi-schema"]
+    uses: ./.github/workflows/dispatch.yml
+    secrets:
+      GH_PAT_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
